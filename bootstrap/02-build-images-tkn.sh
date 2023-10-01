@@ -22,7 +22,6 @@ tkn pipeline start flyingthings-images-pipeline \
   -p git-revision="djw" \
   -p YOLO_IMAGE="image-registry.openshift-image-registry.svc:5000/$TABLESPACE/yolo:latest" \
   -p UBI_IMAGE="image-registry.openshift-image-registry.svc:5000/$TABLESPACE/base-ubi9:latest" \
-  -p MODEL_IMAGE="image-registry.openshift-image-registry.svc:5000/$TABLESPACE/yolo:latest" \
   -p BASE_MODEL="yolov5s.pt" \
   -p MINIMAL_BUILD_ARGS="--build-arg BASE_IMAGE=image-registry.openshift-image-registry.svc:5000/$TABLESPACE/base-ubi9:latest" \
   -p MINIO_BUCKET="flyingthings" \

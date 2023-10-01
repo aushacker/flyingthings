@@ -420,7 +420,7 @@ spec:
         value: $(params.BASE_MODEL)
       - name: SCRIPT
         value: |
-          oc new-app image-registry.openshift-image-registry.svc:5000/$(params.ocp-tablespace)/custom-model:latest \
+          oc new-app image-registry.openshift-image-registry.svc:5000/$(params.ocp-tablespace)/$(params.YOLO_IMAGE) \
             --name=model-yolo \
             --env=WEIGHTS=model_pretrained.pt \
             --env=SIMPLEVIS_DATA=/opt/app-root/src/simplevis-data \
