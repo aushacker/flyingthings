@@ -23,6 +23,13 @@ spec:
       containers:
         - name: utility
           image: registry.access.redhat.com/ubi9:latest
+          resources:
+            requests:
+              cpu: '10m'
+              memory: '100Mi'
+            limits:
+              cpu: '100m'
+              memory: '250Mi'
           command:
             - sleep
             - infinity
