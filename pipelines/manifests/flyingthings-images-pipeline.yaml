@@ -23,6 +23,10 @@ spec:
       default: image-registry.openshift-image-registry.svc:5000/$(params.ocp-tablespace)/yolo:latest
       description: base image for yolo
       type: string
+    - name: SPARSEML_IMAGE
+      default: image-registry.openshift-image-registry.svc:5000/$(params.ocp-tablespace)/sparseml:latest
+      description: base image for sparseml
+      type: string
     - name: UBI_IMAGE
       default: image-registry.openshift-image-registry.svc:5000/$(params.ocp-tablespace)/base-ubi9:latest
       description: base image for notebook
@@ -45,6 +49,10 @@ spec:
       type: string
     - name: YOLO_DOCKERFILE
       default: source/yolo
+      description: dockerfile path 
+      type: string
+    - name: SPARSEML_DOCKERFILE
+      default: source/sparseml
       description: dockerfile path 
       type: string
     - name: MODEL_DOCKERFILE
@@ -78,6 +86,10 @@ spec:
     - name: YOLO_BUILD_ARGS
       default: --build-arg env=YOLOv5_VERSION=7.0
       description: build arguments for yolo
+      type: string
+    - name: SPARSEML_BUILD_ARGS
+      default: --build-arg env=KEY=value
+      description: build arguments for sparseml
       type: string
     - name: BATCH_SIZE
       default: "2"
@@ -162,6 +174,24 @@ spec:
           value: $(workspaces.path)/$(params.YOLO_DOCKERFILE)/Dockerfile
         - name: YOLO_BUILD_ARGS
           value: "$(params.YOLO_BUILD_ARGS)"
+      runAfter:
+        - see-stuff
+      taskRef:
+        kind: ClusterTask
+        name: buildah
+      workspaces:
+        - name: source
+          workspace: source
+    - name: build-sparseml
+      params:
+        - name: IMAGE
+          value: $(params.SPARSEML_IMAGE)
+        - name: DOCKERFILE_PATH
+          value: $(params.SPARSEML_DOCKERFILE)          
+        - name: DOCKERFILE
+          value: $(workspaces.path)/$(params.SPARSEML_DOCKERFILE)/Dockerfile
+        - name: SPARSEML_BUILD_ARGS
+          value: "$(params.SPARSEML_BUILD_ARGS)"
       runAfter:
         - see-stuff
       taskRef:
