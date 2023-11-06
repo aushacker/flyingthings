@@ -27,7 +27,7 @@ tkn pipeline start training-x-pipeline \
   -p IMG_RESIZE="Y" \
   -p MAX_WIDTH="200" \
   -p WEIGHTS=ddemo.pt \
-  -p DATASET_ZIP=ddemo-0001.zip \
+  -p DATASET_ZIP=ddemo-0004.zip \
   -p MINIO_ENDPOINT=http://minio:9000 \
   -p MINIO_ACCESSKEY=minioadmin \
   -p MINIO_SECRETKEY=minioadmin \

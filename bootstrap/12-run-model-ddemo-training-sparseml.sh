@@ -15,8 +15,8 @@ oc project $1
 # Official minio client https://dl.min.io/client/mc/release/linux-amd64
 echo "Run model training"
 tkn pipeline start training-pipeline-sparseml \
-  -w name=sourcecode,volumeClaimTemplateFile=code-pvc-sparseml.yaml \
-  -w name=shared-workspace,volumeClaimTemplateFile=work-pvc-sparseml.yaml \
+  -w name=sourcecode,volumeClaimTemplateFile=code-pvc.yaml \
+  -w name=shared-workspace,volumeClaimTemplateFile=work-pvc.yaml \
   -p ocp-tablespace="$TABLESPACE" \
   -p git-url=https://github.com/aushacker/flyingthings.git \
   -p git-revision=feature/prereqs \
